@@ -9,8 +9,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 import javax.imageio.ImageIO;
-import mephi.b22901.torishonok.mortalkombat.GUI.fighter.Enemy;
-import mephi.b22901.torishonok.mortalkombat.GUI.fighter.EnemyFactory;
+import mephi.b22901.torishonok.GUI.fighter.Enemy;
+import mephi.b22901.torishonok.GUI.fighter.EnemyFactory;
 
 /**
  *

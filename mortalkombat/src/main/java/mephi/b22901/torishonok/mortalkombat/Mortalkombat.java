@@ -4,7 +4,7 @@
 
 package mephi.b22901.torishonok.mortalkombat;
 
-import mephi.b22901.torishonok.mortalkombat.GUI.FirstFrame;
+import mephi.b22901.torishonok.GUI.FirstFrame;
 
 /**
  *

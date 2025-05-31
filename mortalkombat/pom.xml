@@ -4,83 +4,72 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>mephi.b22901.torishonok</groupId>
-    <artifactId>mortalkombat</artifactId>
+    <groupId>com.mycompany</groupId>
+    <artifactId>mortalcombat</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
 
-    <name>Mortal Kombat Game</name>
-
-    <!-- Базовые настройки проекта -->
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>22</maven.compiler.source>
         <maven.compiler.target>22</maven.compiler.target>
-        <exec.mainClass>mephi.b22901.torishonok.mortalkombat.Mortalkombat</exec.mainClass>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
-    <!-- Зависимости -->
     <dependencies>
-    <!-- Apache POI -->
-<dependency>
-    <groupId>org.apache.poi</groupId>
-    <artifactId>poi</artifactId>
-    <version>5.2.3</version>
-</dependency>
-<dependency>
-    <groupId>org.apache.poi</groupId>
-    <artifactId>poi-ooxml</artifactId>
-    <version>5.2.3</version>
-</dependency>
-
-<!-- Log4j2 -->
-<dependency>
-    <groupId>org.apache.logging.log4j</groupId>
-    <artifactId>log4j-core</artifactId>
-    <version>2.17.1</version>
-</dependency>
-<dependency>
-    <groupId>org.apache.logging.log4j</groupId>
-    <artifactId>log4j-api</artifactId>
-    <version>2.17.1</version>
-</dependency>
-</dependencies>
-
-    <!-- Плагины сборки -->
+        <!-- Apache POI для работы с Excel -->
+        <!-- Библиотека для воспроизведения музыки -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.20.0</version> <!-- Актуальная версия -->
+        </dependency>
+        <dependency>
+            <groupId>javazoom</groupId>
+            <artifactId>jlayer</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>5.2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>5.2.0</version>
+        </dependency>
+       </dependencies>
     <build>
+        
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.*</include>
+                </includes>
+            </resource>
+        </resources>
         <plugins>
-            <!-- Компилятор Java -->
+            <!--  Плагин для создания исполняемого JAR  -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.11.0</version>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.4.1</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                    </execution>
+                </executions>
                 <configuration>
-                    <source>${maven.compiler.source}</source>
-                    <target>${maven.compiler.target}</target>
+                    <transformers>
+                        <!--  Указываем главный класс для JAR  -->
+                        <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                            <mainClass>mephi.b22901.torishonok.mortalkombat.Mortalkombat</mainClass>
+                        </transformer>
+                    </transformers>
                 </configuration>
             </plugin>
-
-            <!-- Сборка JAR с main-class -->
-            <plugin>
-    <groupId>org.codehaus.mojo</groupId>
-    <artifactId>exec-maven-plugin</artifactId>
-    <version>3.1.0</version>
-    <executions>
-        <execution>
-            <goals>
-                <goal>exec</goal>
-            </goals>
-            <configuration>
-                <executable>java</executable>
-                <arguments>
-                    <argument>-classpath</argument>
-                    <classpath />
-                    <argument>mephi.b22901.torishonok.mortalkombat.Mortalkombat</argument>
-                </arguments>
-            </configuration>
-        </execution>
-    </executions>
-</plugin>
         </plugins>
     </build>
 </project>
